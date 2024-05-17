@@ -22,7 +22,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button FontFamily="Segoe MDL2 Assets" FontSize="64" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="&#xEA90;">
+        <Button FontFamily="Segoe MDL2 Assets" FontSize="64" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="&#xEA90;"/>
         <Button FontFamily="Segoe MDL2 Assets" FontSize="64" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Content="&#xE722;"/>
         <Button FontSize="20" Content="Start without info" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="10"/>
         <Button FontSize="20" Content="?" Grid.Column="6" Height="40" Width="40" Margin="10"/>
