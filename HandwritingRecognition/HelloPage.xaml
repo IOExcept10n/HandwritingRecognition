@@ -18,13 +18,28 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Button Name="LoadPNGButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="10 0 20 20">
-            <Run Text="Загрузить png" FontSize="24" FontFamily="Segoe UI"></Run>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <Run Text="Загрузить png" FontSize="24" FontFamily="./Resources/#Days"></Run>
         </Button>
         <Button Name="LoadPDFButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="20 0 10 20" Grid.Column="1">
-            <Run Text="Загрузить pdf" FontSize="24" FontFamily="Segoe UI"></Run>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <Run Text="Загрузить pdf" FontSize="24" FontFamily="./Resources/#Days"></Run>
         </Button>
         <Button Name="OpenEditorButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="70"  Background="Orange" Margin="30" Grid.Row="1" Grid.ColumnSpan="2" Click="OpenEditorButton_Click">
-            <Run Text="Открыть редактор" FontSize="24" FontFamily="Segoe UI"></Run>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="7"/>
+                </Style>
+            </Button.Resources>
+            <Run Text="Открыть редактор" FontSize="24" FontFamily="./Resources/#Days"></Run>
         </Button>
     </Grid>
 </Page>

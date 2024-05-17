@@ -16,6 +16,23 @@ namespace HandwritingRecognition.Controls
         private Point origin;
         private Point start;
 
+        private Size initialSize;
+        private double scale = 1;
+        public double MaxScale { get; set; } = 3;
+        public double MinScale { get; set; } = 1;
+        public double Scale
+        {
+            get => scale;
+            set
+            {
+                if (child == null) return;
+                value = Math.Clamp(value, MinScale, MaxScale);
+                var st = GetScaleTransform(child);
+                st.ScaleX = st.ScaleY = scale = value;
+            }
+        }
+
+
         private TranslateTransform GetTranslateTransform(UIElement element)
         {
             return (TranslateTransform)((TransformGroup)element.RenderTransform)
@@ -30,32 +47,32 @@ namespace HandwritingRecognition.Controls
 
         public override UIElement Child
         {
-            get { return base.Child; }
+            get => base.Child;
             set
             {
-                if (value != null && value != this.Child)
-                    this.Initialize(value);
+                if (value != null && value != Child)
+                    Initialize(value);
                 base.Child = value;
             }
         }
-
         public void Initialize(UIElement element)
         {
-            this.child = element;
+            child = element;
             if (child != null)
             {
+                initialSize = child.RenderSize;
                 TransformGroup group = new TransformGroup();
+                TranslateTransform tt = new TranslateTransform();
                 ScaleTransform st = new ScaleTransform();
                 group.Children.Add(st);
-                TranslateTransform tt = new TranslateTransform();
                 group.Children.Add(tt);
                 child.RenderTransform = group;
                 child.RenderTransformOrigin = new Point(0.0, 0.0);
-                this.MouseWheel += child_MouseWheel;
-                this.MouseLeftButtonDown += child_MouseLeftButtonDown;
-                this.MouseLeftButtonUp += child_MouseLeftButtonUp;
-                this.MouseMove += child_MouseMove;
-                this.PreviewMouseRightButtonDown += new MouseButtonEventHandler(
+                MouseWheel += child_MouseWheel;
+                MouseLeftButtonDown += child_MouseLeftButtonDown;
+                MouseLeftButtonUp += child_MouseLeftButtonUp;
+                MouseMove += child_MouseMove;
+                PreviewMouseRightButtonDown += new MouseButtonEventHandler(
                   child_PreviewMouseRightButtonDown);
             }
         }
@@ -65,9 +82,7 @@ namespace HandwritingRecognition.Controls
             if (child != null)
             {
                 // reset zoom
-                var st = GetScaleTransform(child);
-                st.ScaleX = 1.0;
-                st.ScaleY = 1.0;
+                Scale = 1;
 
                 // reset pan
                 var tt = GetTranslateTransform(child);
@@ -80,14 +95,12 @@ namespace HandwritingRecognition.Controls
 
         private void child_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (child != null)
+            if (child != null && e.Delta>0)
             {
                 var st = GetScaleTransform(child);
                 var tt = GetTranslateTransform(child);
 
-                double zoom = e.Delta > 0 ? .2 : -.2;
-                if (!(e.Delta > 0) && (st.ScaleX < .4 || st.ScaleY < .4))
-                    return;
+                double zoom = 0.2;
 
                 Point relative = e.GetPosition(child);
                 double absoluteX;
@@ -96,14 +109,16 @@ namespace HandwritingRecognition.Controls
                 absoluteX = relative.X * st.ScaleX + tt.X;
                 absoluteY = relative.Y * st.ScaleY + tt.Y;
 
-                st.ScaleX += zoom;
-                st.ScaleY += zoom;
+                Scale += zoom;
 
                 tt.X = absoluteX - relative.X * st.ScaleX;
                 tt.Y = absoluteY - relative.Y * st.ScaleY;
             }
         }
-
+        private Rect RecBounds(UIElement item)
+        {
+            return item.TransformToAncestor(Application.Current.MainWindow).TransformBounds(new Rect(0, 0, item.RenderSize.Width, item.RenderSize.Height));
+        }
         private void child_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (child != null)
@@ -111,7 +126,7 @@ namespace HandwritingRecognition.Controls
                 var tt = GetTranslateTransform(child);
                 start = e.GetPosition(this);
                 origin = new Point(tt.X, tt.Y);
-                this.Cursor = Cursors.Hand;
+                Cursor = Cursors.Hand;
                 child.CaptureMouse();
             }
         }
@@ -121,25 +136,35 @@ namespace HandwritingRecognition.Controls
             if (child != null)
             {
                 child.ReleaseMouseCapture();
-                this.Cursor = Cursors.Arrow;
+                Cursor = Cursors.Arrow;
             }
         }
 
         void child_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.Reset();
+            Reset();
         }
 
         private void child_MouseMove(object sender, MouseEventArgs e)
         {
             if (child != null)
             {
-                if (child.IsMouseCaptured)
+                if (child.IsMouseCaptured && Scale > 1)
                 {
                     var tt = GetTranslateTransform(child);
-                    Vector v = start - e.GetPosition(this);
+                    var bounds = RecBounds(this);
+                    var childBounds = RecBounds(child);
+                    Point mouse = e.GetPosition(this);
+                    Vector v = start - mouse;
+                    childBounds = Rect.Offset(childBounds, -v);
+                    if (v.X < 0 && childBounds.Left > bounds.Left) v.X = 0;
+                    if (v.Y < 0 && childBounds.Top > bounds.Top) v.Y = 0;
+                    if (v.X > 0 && childBounds.Right < bounds.Right) v.X = 0;
+                    if (v.Y > 0 && childBounds.Bottom < bounds.Bottom) v.Y = 0;
                     tt.X = origin.X - v.X;
                     tt.Y = origin.Y - v.Y;
+                    start = mouse;
+                    origin = new Point(tt.X, tt.Y);
                 }
             }
         }
