@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HandwritingRecognition.Data
 {
-    public class PassportInfo
+    public class PassportInfo : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         public string DocumentType { get; set; }
 
         public string? Series { get; set; }
@@ -17,5 +21,10 @@ namespace HandwritingRecognition.Data
         public DateOnly? AcquireDate { get; set; }
 
         public string? GivenBy { get; set; }
+
+        private void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
