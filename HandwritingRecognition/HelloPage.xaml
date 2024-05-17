@@ -1,0 +1,30 @@
+﻿<Page x:Class="HandwritingRecognition.HelloPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HandwritingRecognition"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HelloPage"
+      Background="#262424">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Name="LoadPNGButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="10 0 20 20">
+            <Run Text="Загрузить png" FontSize="24" FontFamily="Segoe UI"></Run>
+        </Button>
+        <Button Name="LoadPDFButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="20 0 10 20" Grid.Column="1">
+            <Run Text="Загрузить pdf" FontSize="24" FontFamily="Segoe UI"></Run>
+        </Button>
+        <Button Name="OpenEditorButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="70"  Background="Orange" Margin="30" Grid.Row="1" Grid.ColumnSpan="2" Click="OpenEditorButton_Click">
+            <Run Text="Открыть редактор" FontSize="24" FontFamily="Segoe UI"></Run>
+        </Button>
+    </Grid>
+</Page>

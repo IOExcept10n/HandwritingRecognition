@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HandwritingRecognition
 {
     /// <summary>
-    /// Логика взаимодействия для HelloWindow.xaml
+    /// Логика взаимодействия для EditorPage.xaml
     /// </summary>
-    public partial class HelloWindow : Window
+    public partial class EditorPage : Page
     {
-        public HelloWindow()
+        public EditorPage()
         {
             InitializeComponent();
         }
