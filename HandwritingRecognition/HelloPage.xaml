@@ -7,7 +7,8 @@
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HelloPage"
-      Background="#262424">
+      Background="#262424"
+      AllowDrop="True" Drop="Grid_Drop">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -28,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <Button Name="Help" Content="?" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="40" Background="#25b0e4" Margin="15 10" FontSize="28" FontFamily="./Resources/#Days" Click="ShowHelp_Click" />
         </Grid>
-        <Button Name="LoadPNGButton" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20">
+        <Button Name="LoadPNGButton" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20" Click="LoadPNGButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="14"/>
@@ -36,7 +37,7 @@
             </Button.Resources>
             <Run Text="Загрузить png" FontSize="24" FontFamily="./Resources/#Days"/>
         </Button>
-        <Button Name="LoadPDFButton" Grid.Column="2" Grid.Row="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20">
+        <Button Name="LoadPDFButton" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20" Click="LoadPDFButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="14"/>

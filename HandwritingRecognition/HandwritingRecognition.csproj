@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Days.ttf" />
+    <None Remove="Resources\Knight.ico" />
     <None Remove="Resources\testIcon.png" />
     <None Remove="stylecop.json" />
   </ItemGroup>
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\Days.ttf" />
+    <Resource Include="Resources\Knight.ico" />
     <Resource Include="Resources\TestIcon.png" />
   </ItemGroup>
 

@@ -196,15 +196,65 @@ namespace HandwritingRecognition.ViewModel
             return false;
         }
 
-        public void ImportImages()
+        public bool ImportImages(string[]? images = null)
         {
+            if (images == null)
+            {
+                OpenFileDialog dialog = new()
+                {
+                    DefaultExt = "png",
+                    Title = "Выберите изображения для распознавания",
+                    CheckFileExists = true,
+                    CheckPathExists = true,
+                    Multiselect = true,
+                    Filter = "Изображения PNG|*.png|Изображения JPEG|*.jpg;*.jpeg|Все файлы|*.*",
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    images = dialog.FileNames;
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
+            // TODO
+
+            return true;
+        }
+
+        public bool ImportPDF(string? path = null)
+        {
+            if (path == null)
+            {
+                OpenFileDialog dialog = new()
+                {
+                    DefaultExt = "pdf",
+                    Title = "Выберите документ для распознавания",
+                    CheckFileExists = true,
+                    CheckPathExists = true,
+                    Filter = "Документ Portable Document Format|*.pdf|Все файлы|*.*",
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    path = dialog.FileName;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // TODO
+
+            return true;
         }
 
         private enum SerializationFormat
         {
             Xml,
-            Json
+            Json,
         }
     }
 }

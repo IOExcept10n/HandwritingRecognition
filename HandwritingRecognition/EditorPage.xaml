@@ -112,7 +112,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Сведения о предыдущих местах работы" Margin="5" FontSize="18" Style="{StaticResource FontStyle}"/>
-                        <DataGrid ItemsSource="{Binding Jobs}" Margin="5" AutoGenerateColumns="False">
+                        <DataGrid ItemsSource="{Binding Jobs}" Margin="5" AutoGenerateColumns="False" LostFocus="DataGrid_LostFocus">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="Position" Header="Номер записи" Binding="{Binding Position}"/>
                                 <DataGridTextColumn x:Name="BeginDate" Header="Дата трудоустройства" Binding="{Binding EmploymentDate}"/>
@@ -125,7 +125,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Сведения о поощрениях" Margin="5" FontSize="18" Style="{StaticResource FontStyle}"/>
-                        <DataGrid ItemsSource="{Binding Rewards}" Margin="5" AutoGenerateColumns="False">
+                        <DataGrid ItemsSource="{Binding Rewards}" Margin="5" AutoGenerateColumns="False"  LostFocus="DataGrid_LostFocus">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="RewardBeginDate" Header="Дата трудоустройства" Binding="{Binding Date}"/>
                                 <DataGridTextColumn x:Name="RewardDetails" Header="Сведения" Binding="{Binding Details}"/>

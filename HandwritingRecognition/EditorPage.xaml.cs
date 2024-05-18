@@ -82,5 +82,10 @@ namespace HandwritingRecognition
         {
             NavigationService.Navigate(new HelloPage());
         }
+
+        private void DataGrid_LostFocus(object sender, RoutedEventArgs e)
+        {
+            (sender as DataGrid)!.SelectedItem = null;
+        }
     }
 }
