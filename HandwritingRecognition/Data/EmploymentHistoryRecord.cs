@@ -10,17 +10,63 @@ namespace HandwritingRecognition.Data
 {
     public class EmploymentHistoryRecord : INotifyPropertyChanged
     {
+        private DateOnly? employmentDate;
+        private DateOnly? expellDate;
+        private string? printInfo;
+        private string? position;
+        private string? orderInfo;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public DateOnly? EmploymentDate { get; set; }
+        public DateOnly? EmploymentDate
+        {
+            get => employmentDate;
+            set
+            {
+                employmentDate = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateOnly? ExpellDate { get; set; }
+        public DateOnly? ExpellDate
+        {
+            get => expellDate;
+            set
+            {
+                expellDate = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? PrintInfo { get; set; }
+        public string? PrintInfo
+        {
+            get => printInfo;
+            set
+            {
+                printInfo = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Position { get; set; }
+        public string? Position
+        {
+            get => position;
+            set
+            {
+                position = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? OrderInfo { get; set; }
+        public string? OrderInfo
+        {
+            get => orderInfo;
+            set
+            {
+                orderInfo = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void OnPropertyChanged([CallerMemberName] string? name = null)
         {

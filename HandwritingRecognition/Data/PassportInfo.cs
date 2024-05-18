@@ -10,17 +10,63 @@ namespace HandwritingRecognition.Data
 {
     public class PassportInfo : INotifyPropertyChanged
     {
+        private string documentType;
+        private string? series;
+        private string? number;
+        private DateOnly? acquireDate;
+        private string? givenBy;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public string DocumentType { get; set; }
+        public string DocumentType
+        {
+            get => documentType;
+            set
+            {
+                documentType = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Series { get; set; }
+        public string? Series
+        {
+            get => series;
+            set
+            {
+                series = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Number { get; set; }
+        public string? Number
+        {
+            get => number;
+            set
+            {
+                number = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public DateOnly? AcquireDate { get; set; }
+        public DateOnly? AcquireDate
+        {
+            get => acquireDate;
+            set
+            {
+                acquireDate = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? GivenBy { get; set; }
+        public string? GivenBy
+        {
+            get => givenBy;
+            set
+            {
+                givenBy = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void OnPropertyChanged([CallerMemberName] string? name = null)
         {

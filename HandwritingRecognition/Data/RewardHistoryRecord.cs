@@ -12,6 +12,8 @@ namespace HandwritingRecognition.Data
     {
         private DateOnly? date;
         private string? stampInfo;
+        private string? details;
+        private string? orderInfo;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -25,11 +27,35 @@ namespace HandwritingRecognition.Data
             }
         }
 
-        public string? StampInfo { get => stampInfo; set => stampInfo = value; }
+        public string? StampInfo
+        {
+            get => stampInfo;
+            set
+            {
+                stampInfo = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Details { get; set; }
+        public string? Details
+        {
+            get => details;
+            set
+            {
+                details = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? OrderInfo { get; set; }
+        public string? OrderInfo
+        {
+            get => orderInfo;
+            set
+            {
+                orderInfo = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void OnPropertyChanged([CallerMemberName] string? name = null)
         {
