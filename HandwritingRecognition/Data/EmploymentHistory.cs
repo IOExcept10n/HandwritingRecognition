@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace HandwritingRecognition.Data
 {
-    class EmploymentHistory
+    public class EmploymentHistory
     {
         public EmploymentHistoryDefinition HistoryDefinition { get; init; } = new();
 

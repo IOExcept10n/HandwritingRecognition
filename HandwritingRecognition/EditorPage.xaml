@@ -15,8 +15,7 @@
     <Page.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveConfigHandled"/>
         <CommandBinding Command="{x:Static local:MainWindow.OpenCommand}" Executed="OpenConfigHandled"/>
-        <CommandBinding Command="{x:Static local:MainWindow.SaveAsXmlCommand}" Executed="SaveConfigAsXmlHandled"/>
-        <CommandBinding Command="{x:Static local:MainWindow.SaveAsJsonCommand}" Executed="SaveConfigAsJsonHandled"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveAsCommand}" Executed="SaveConfigAsHandled"/>
         <CommandBinding Command="{x:Static local:MainWindow.LoadImagesCommand}" Executed="LoadImagesHandled"/>
         <CommandBinding Command="{x:Static local:MainWindow.NewFileCommand}" Executed="NewFileHandled"/>
     </Page.CommandBindings>
@@ -35,9 +34,9 @@
                 <MenuItem Header="_Файл" Foreground="White" FontFamily="./Resources/#Days">
                     <MenuItem Header="_Создать" Name="CreateFile" Click="CreateFile_Click" FontFamily="./Resources/#Days"/>
                     <MenuItem Header="_Открыть..." Name="OpenFile" Click="OpenFile_Click" FontFamily="./Resources/#Days"/>
+                    <MenuItem Header="_Загрузить изображения..." Name="ImportImages" Click="ImportImages_Click" FontFamily="./Resources/#Days"/>
                     <MenuItem Header="Сохранит_ь..." Name="SaveFile" Click="SaveFile_Click" FontFamily="./Resources/#Days"/>
-                    <MenuItem Header="Сохранить как _XML..." Name="SaveFileAsXml" Click="SaveFileAsXml_Click" FontFamily="./Resources/#Days"/>
-                    <MenuItem Header="Сохранить как _JSON..." Name="SaveFileAsJson" Click="SaveFileAsJson_Click" FontFamily="./Resources/#Days"/>
+                    <MenuItem Header="Сохранить _как..." Name="SaveFileAs" Click="SaveFileAs_Click" FontFamily="./Resources/#Days"/>
                 </MenuItem>
                 <MenuItem Header="Справ_ка" Foreground="White" FontFamily="./Resources/#Days">
                     <MenuItem Header="_Просмотр справки" Name="ShowHelp" Click="ShowHelp_Click" FontFamily="./Resources/#Days"/>
@@ -138,10 +137,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="12*"/>
                     <ColumnDefinition Width="7*" MinWidth="175"/>
-                    <ColumnDefinition Width="7*" MinWidth="175"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SaveAsJson" Grid.Column="1" Content="Сохранить в JSON" Margin="5" MaxHeight="80" MinHeight="40" MaxWidth="375" Background="Orange" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                <Button x:Name="SaveAsXml" Grid.Column="2" Content="Сохранить в XML" Margin="5" MaxHeight="80" MinHeight="40" MaxWidth="375" Background="Orange" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <Button x:Name="Save" Grid.Column="1" Content="Сохранить запись" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" Background="Orange" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Save_Click"/>
             </Grid>
         </Grid>
         

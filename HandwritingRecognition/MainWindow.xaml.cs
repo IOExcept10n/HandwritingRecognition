@@ -19,8 +19,7 @@ namespace HandwritingRecognition
         public static RoutedCommand SaveCommand = new("SaveConfig", typeof(MainWindow));
         public static RoutedCommand OpenCommand = new("OpenConfig", typeof(MainWindow));
         public static RoutedCommand NewFileCommand = new("NewConfig", typeof(MainWindow));
-        public static RoutedCommand SaveAsXmlCommand = new("SaveConfigAsXml", typeof(MainWindow));
-        public static RoutedCommand SaveAsJsonCommand = new("SaveConfigAsJson", typeof(MainWindow));
+        public static RoutedCommand SaveAsCommand = new("SaveConfigAs", typeof(MainWindow));
         public static RoutedCommand LoadImagesCommand = new("LoadImages", typeof(MainWindow));
 
         public MainWindow()
