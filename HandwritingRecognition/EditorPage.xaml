@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditorPage"
-      Background="#262424"
+      Background="#D01f1f1f"
       DataContext="{StaticResource Editor}">
     <Page.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveConfigHandled"/>
@@ -142,10 +142,18 @@
                     <ColumnDefinition Width="7*" MinWidth="120"/>
                     <ColumnDefinition Width="7*" MinWidth="175"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BackButton" Grid.Column="1" Content="Назад" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" Background="DarkOrange" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="BackButton_Click"></Button>
-                <Button x:Name="Save" Grid.Column="2" Content="Сохранить запись" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" Background="Orange" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Save_Click"/>
+                <Button x:Name="BackButton" Grid.Column="1" Content="Назад" Foreground="White" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="BackButton_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF7D8388" Opacity="0.65"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="Save" Grid.Column="2" Content="Сохранить запись" Foreground="White" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Save_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FFF99214" Opacity="0.65"/>
+                    </Button.Background>
+                </Button>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Page>

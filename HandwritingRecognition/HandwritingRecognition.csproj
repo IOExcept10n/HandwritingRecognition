@@ -6,17 +6,36 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\SteelLogo256x256.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Background.png" />
+    <None Remove="Resources\BackgroundWithFrame.png" />
+    <None Remove="Resources\camera.png" />
     <None Remove="Resources\Days.ttf" />
-    <None Remove="Resources\Knight.ico" />
+    <None Remove="Resources\document.png" />
+    <None Remove="Resources\Logo.ico" />
+    <None Remove="Resources\ShadowLogo128x128.ico" />
+    <None Remove="Resources\ShadowLogo256x256.ico" />
+    <None Remove="Resources\SteelLogo128x128.ico" />
+    <None Remove="Resources\SteelLogo256x256.ico" />
     <None Remove="Resources\testIcon.png" />
+    <None Remove="Resources\TestKnight.ico" />
     <None Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Background.png" />
+    <Resource Include="Resources\BackgroundWithFrame.png" />
+    <Resource Include="Resources\camera.png" />
+    <Resource Include="Resources\document.png" />
+    <Resource Include="Resources\Logo.ico" />
+    <Resource Include="Resources\ShadowLogo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +48,11 @@
 
   <ItemGroup>
     <Resource Include="Resources\Days.ttf" />
-    <Resource Include="Resources\Knight.ico" />
+    <Resource Include="Resources\SteelLogo128x128.ico" />
+    <Resource Include="Resources\SteelLogo256x256.ico" />
+    <Resource Include="Resources\TestKnight.ico" />
+    <Resource Include="Resources\ShadowLogo128x128.ico" />
+    <Resource Include="Resources\ShadowLogo256x256.ico" />
     <Resource Include="Resources\TestIcon.png" />
   </ItemGroup>
 

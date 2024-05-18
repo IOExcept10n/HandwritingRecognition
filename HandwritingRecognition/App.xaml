@@ -19,6 +19,13 @@
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style x:Key="MainMenuButtonStyle" TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="12"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
