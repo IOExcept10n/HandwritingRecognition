@@ -14,7 +14,10 @@ namespace HandwritingRecognition
         {
             InitializeComponent();
         }
-
+        private void ShowHelp_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO.
+        }
         private void OpenEditorButton_Click(object sender, RoutedEventArgs e)
         {
             EditorViewModel.Instance.CreateConfig();

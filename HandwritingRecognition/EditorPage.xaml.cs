@@ -77,5 +77,10 @@ namespace HandwritingRecognition
         {
             viewModel.ImportImages();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new HelloPage());
+        }
     }
 }
