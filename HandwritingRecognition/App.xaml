@@ -26,6 +26,7 @@
                     </Style>
                 </Style.Resources>
             </Style>
+            <BitmapImage x:Key="FallbackImage" UriSource="./Resources/image.png"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -52,8 +52,10 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <mycontrols:ZoomBorder x:Name="ImageViewport" Margin="40 20 20 20" ClipToBounds="True" HorizontalAlignment="Stretch">
-                <Image Source="./Resources/TestIcon.png" Stretch="Uniform"/>
+                <Image Stretch="Uniform" Source="{Binding CurrentImage, FallbackValue={StaticResource FallbackImage}, Mode=OneWay}" />
             </mycontrols:ZoomBorder>
+            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE760;" HorizontalAlignment="Left"/>
+            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE761;" HorizontalAlignment="Right"/>
         </Grid>
         <Border Grid.Column="1" Width="3" Grid.Row="1" Background="Gray"/>
         <Grid Grid.Column="2" Grid.Row="1">

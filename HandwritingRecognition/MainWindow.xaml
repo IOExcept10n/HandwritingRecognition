@@ -8,7 +8,6 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         DataContext="{StaticResource Editor}"
-        Icon="./Resources/SteelLogo256x256.ico"
         Title="MainWindow" Height="450" Width="800" MinWidth="700" MinHeight="450">
     <Frame Source="HelloPage.xaml" NavigationUIVisibility="Hidden" Panel.ZIndex="1" />
 </Window>
