@@ -7,33 +7,26 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HandwritingRecognition.Data
 {
-    class EmploymentHistory : INotifyPropertyChanged
+    class EmploymentHistory
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public EmploymentHistoryDefinition HistoryDefinition { get; init; } = new();
 
         public EmployeeInfo Info { get; init; } = new();
 
-        public SpecializationInfo Specialization { get; init; } = new();
-
         public ObservableCollection<EmploymentHistoryRecord> Jobs { get; init; } = [];
 
         public ObservableCollection<RewardHistoryRecord> Rewards { get; init; } = [];
-
-        private void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
         public class EmploymentHistoryDefinition : INotifyPropertyChanged
         {
             private string? series;
             private string? number;
             private DateOnly? withdrawDate;
+            private string? stampInfo;
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -67,6 +60,16 @@ namespace HandwritingRecognition.Data
                 }
             }
 
+            public string? StampInfo
+            {
+                get => stampInfo;
+                set
+                {
+                    stampInfo = value;
+                    OnPropertyChanged();
+                }
+            }
+
             private void OnPropertyChanged([CallerMemberName] string? name = null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -83,6 +86,8 @@ namespace HandwritingRecognition.Data
             private string? overridePatronymic;
             private DateOnly? birthDate;
             private PassportInfo? overrideReason;
+            private string? education;
+            private string? profession;
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -167,19 +172,6 @@ namespace HandwritingRecognition.Data
                     OnPropertyChanged();
                 }
             }
-
-            private void OnPropertyChanged([CallerMemberName] string? name = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        public class SpecializationInfo : INotifyPropertyChanged
-        {
-            private string? education;
-            private string? profession;
-
-            public event PropertyChangedEventHandler? PropertyChanged;
 
             public string? Education
             {

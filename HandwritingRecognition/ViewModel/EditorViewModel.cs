@@ -10,6 +10,8 @@ namespace HandwritingRecognition.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public static EditorViewModel Instance { get; set; } = null;
+
         public EmploymentHistory History
         {
             get => history;
@@ -19,6 +21,11 @@ namespace HandwritingRecognition.ViewModel
                 // TODO
                 OnPropertyChanged();
             }
+        }
+
+        public EditorViewModel()
+        {
+            Instance = this;
         }
 
         private void OnPropertyChanged([CallerMemberName] string? name = null)

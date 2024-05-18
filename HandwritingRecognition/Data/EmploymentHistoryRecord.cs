@@ -15,6 +15,7 @@ namespace HandwritingRecognition.Data
         private string? printInfo;
         private string? position;
         private string? orderInfo;
+        private string? details;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -64,6 +65,16 @@ namespace HandwritingRecognition.Data
             set
             {
                 orderInfo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string? Details
+        {
+            get => details;
+            set
+            {
+                details = value;
                 OnPropertyChanged();
             }
         }

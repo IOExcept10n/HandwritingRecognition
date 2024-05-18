@@ -10,14 +10,18 @@
       Background="#262424">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Name="LoadPNGButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="10 0 20 20">
+        <Button Name="LoadPNGButton" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="14"/>
@@ -25,7 +29,7 @@
             </Button.Resources>
             <Run Text="Загрузить png" FontSize="24" FontFamily="./Resources/#Days"></Run>
         </Button>
-        <Button Name="LoadPDFButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="250" Height="140" Background="Orange" Margin="20 0 10 20" Grid.Column="1">
+        <Button Name="LoadPDFButton" Grid.Column="2" Grid.Row="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="14"/>
@@ -33,7 +37,7 @@
             </Button.Resources>
             <Run Text="Загрузить pdf" FontSize="24" FontFamily="./Resources/#Days"></Run>
         </Button>
-        <Button Name="OpenEditorButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="70"  Background="Orange" Margin="30" Grid.Row="1" Grid.ColumnSpan="2" Click="OpenEditorButton_Click">
+        <Button Name="OpenEditorButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange" Margin="70 30" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Click="OpenEditorButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="7"/>
