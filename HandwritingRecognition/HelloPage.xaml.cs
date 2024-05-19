@@ -38,7 +38,8 @@ namespace HandwritingRecognition
 
         private void LoadPNGButton_Click(object sender, RoutedEventArgs e)
         {
-            if (editor.ImportImages())
+            var t = editor.ImportImages();
+            if (!t.IsCompleted || !t.Result)
             {
                 NavigateToEditor();
             }
@@ -46,7 +47,8 @@ namespace HandwritingRecognition
 
         private void LoadPDFButton_Click(object sender, RoutedEventArgs e)
         {
-            if (editor.ImportPDF())
+            var t = editor.ImportPDF();
+            if (!t.IsCompleted || !t.Result)
             {
                 NavigateToEditor();
             }
@@ -59,17 +61,17 @@ namespace HandwritingRecognition
                 // Note that you can have more than one file.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                bool handled;
+                Task<bool> t;
                 if (files.Length == 1 && Path.GetExtension(files[0]) == ".pdf")
                 {
-                    handled = editor.ImportPDF(files[0]);
+                    t = editor.ImportPDF(files[0]);
                 }
                 else
                 {
-                    handled = editor.ImportImages(files);
+                    t = editor.ImportImages(files);
                 }
 
-                if (handled)
+                if (!t.IsCompleted || !t.Result)
                 {
                     NavigateToEditor();
                 }

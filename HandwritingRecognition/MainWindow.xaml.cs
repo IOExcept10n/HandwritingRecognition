@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using HandwritingRecognition.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,9 +23,13 @@ namespace HandwritingRecognition
         public static RoutedCommand SaveAsCommand = new("SaveConfigAs", typeof(MainWindow));
         public static RoutedCommand LoadImagesCommand = new("LoadImages", typeof(MainWindow));
 
+        private readonly EditorViewModel editor;
+
         public MainWindow()
         {
             InitializeComponent();
+            editor = EditorViewModel.Instance;
+            editor.InitializePipeline();
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using HandwritingRecognition.Data;
+﻿using HandwritingRecognition.ComputerVision;
+using HandwritingRecognition.ComputerVision.Processing;
+using HandwritingRecognition.Data;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.IO;
@@ -7,6 +10,7 @@ using System.IO.Packaging;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 
 namespace HandwritingRecognition.ViewModel
@@ -17,6 +21,7 @@ namespace HandwritingRecognition.ViewModel
         private bool hasUnsavedChanges;
         private string filePath;
         private SerializationFormat format;
+        private int imageIndex;
 
         public EditorViewModel()
         {
@@ -53,6 +58,12 @@ namespace HandwritingRecognition.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public IImagePipeline ImageRecognizer { get; private set; }
+
+        public ObservableCollection<BitmapImage> Images { get; } = [];
+
+        public BitmapImage CurrentImage => Images[imageIndex];
 
         private void History_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -124,11 +135,17 @@ namespace HandwritingRecognition.ViewModel
             return true;
         }
 
+        public void InitializePipeline()
+        {
+            ImageRecognizer = new DefaultImageRecognitionPipeline();
+        }
+
         public bool CreateConfig()
         {
             if (SaveIfUnsaved())
             {
                 History = new();
+                Images.Clear();
                 HasUnsavedChanges = false;
                 return true;
             }
@@ -196,9 +213,9 @@ namespace HandwritingRecognition.ViewModel
             return false;
         }
 
-        public bool ImportImages(string[]? images = null)
+        public async Task<bool> ImportImages(string[]? imagePaths = null)
         {
-            if (images == null)
+            if (imagePaths == null)
             {
                 OpenFileDialog dialog = new()
                 {
@@ -211,7 +228,7 @@ namespace HandwritingRecognition.ViewModel
                 };
                 if (dialog.ShowDialog() == true)
                 {
-                    images = dialog.FileNames;
+                    imagePaths = dialog.FileNames;
                 }
                 else
                 {
@@ -219,12 +236,19 @@ namespace HandwritingRecognition.ViewModel
                 }
             }
 
-            // TODO
+            var progress = new Progress<ProgressInfo>();
+            await ImageRecognizer.ProcessAsync(imagePaths, History, progress);
+
+            foreach (var path in imagePaths)
+            {
+                var uri = new Uri(path);
+                Images.Add(new BitmapImage(uri));
+            }
 
             return true;
         }
 
-        public bool ImportPDF(string? path = null)
+        public async Task<bool> ImportPDF(string? path = null)
         {
             if (path == null)
             {
@@ -249,6 +273,24 @@ namespace HandwritingRecognition.ViewModel
             // TODO
 
             return true;
+        }
+
+        public void NextImage()
+        {
+            OnPropertyChanged(nameof(CurrentImage));
+            if (imageIndex + 1 >= Images.Count)
+            {
+                imageIndex = 0;
+            }
+        }
+
+        public void PreviousImage()
+        {
+            OnPropertyChanged(nameof(CurrentImage));
+            if (imageIndex - 1 < 0)
+            {
+                imageIndex = Images.Count - 1;
+            }
         }
 
         private enum SerializationFormat
