@@ -4,10 +4,13 @@
 A neural network app for the handwriting recognition for the Digital Breaktrough Hackaton
 
 # Get started
-TODO
+Application uses two sides: server and client.
+- [Server](./server/) contains all neural networks and server that recognizes the text
+- [Client](./HandwritingRecognition/) contains the desktop application with history editor. 
+- App requires .NET 8 or newer, UltraLytics and PyTorch
 
 # Usage
-TODO
+TODO 
 
 # Documentation
 TODO
