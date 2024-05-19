@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HandwritingRecognition.Data
 {
+    /// <summary>
+    /// Gets the information about employee's previous job.
+    /// </summary>
     public class EmploymentHistoryRecord : INotifyPropertyChanged
     {
         private DateOnly? employmentDate;
@@ -17,8 +15,12 @@ namespace HandwritingRecognition.Data
         private string? orderInfo;
         private string? details;
 
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        /// <summary>
+        /// Gets or sets the date of employment.
+        /// </summary>
         public DateOnly? EmploymentDate
         {
             get => employmentDate;
@@ -29,6 +31,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the date of end of work.
+        /// </summary>
         public DateOnly? ExpellDate
         {
             get => expellDate;
@@ -39,6 +44,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the info about the stamp.
+        /// </summary>
         public string? PrintInfo
         {
             get => printInfo;
@@ -49,6 +57,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets employee's role.
+        /// </summary>
         public string? Position
         {
             get => position;
@@ -59,6 +70,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the information about employment order.
+        /// </summary>
         public string? OrderInfo
         {
             get => orderInfo;
@@ -69,6 +83,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the details about the job.
+        /// </summary>
         public string? Details
         {
             get => details;

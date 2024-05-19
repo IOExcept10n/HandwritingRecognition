@@ -54,8 +54,8 @@
             <mycontrols:ZoomBorder x:Name="ImageViewport" Margin="40 20 20 20" ClipToBounds="True" HorizontalAlignment="Stretch">
                 <Image Stretch="Uniform" Source="{Binding CurrentImage, FallbackValue={StaticResource FallbackImage}, Mode=OneWay}" />
             </mycontrols:ZoomBorder>
-            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE760;" HorizontalAlignment="Left"/>
-            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE761;" HorizontalAlignment="Right"/>
+            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE760;" HorizontalAlignment="Left" Click="ButtonLeft_Click"/>
+            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE761;" HorizontalAlignment="Right" Click="ButtonRight_Click"/>
         </Grid>
         <Border Grid.Column="1" Width="3" Grid.Row="1" Background="Gray"/>
         <Grid Grid.Column="2" Grid.Row="1">
@@ -149,7 +149,7 @@
                         <SolidColorBrush Color="#FF7D8388" Opacity="0.65"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="Save" Grid.Column="2" Content="Сохранить запись" Foreground="White" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Save_Click">
+                <Button x:Name="Save" Grid.Column="2" Content="Сохранить запись" Foreground="White" Margin="5" MaxHeight="70" MinHeight="40" MaxWidth="375" FontFamily="./Resources/#Days" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Save_Click" IsEnabled="{Binding HasUnsavedChanges}">
                     <Button.Background>
                         <SolidColorBrush Color="#FFF99214" Opacity="0.65"/>
                     </Button.Background>

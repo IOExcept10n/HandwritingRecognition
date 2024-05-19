@@ -36,7 +36,7 @@ namespace HandwritingRecognition
 
         private void LoadImagesHandled(object sender, ExecutedRoutedEventArgs e)
         {
-            viewModel.ImportImages();
+            _ = viewModel.ImportImages();
         }
 
         private void NewFileHandled(object sender, ExecutedRoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace HandwritingRecognition
 
         private void ImportImages_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.ImportImages();
+            _ = viewModel.ImportImages();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +91,16 @@ namespace HandwritingRecognition
         private void DataGrid_LostFocus(object sender, RoutedEventArgs e)
         {
             (sender as DataGrid)!.SelectedItem = null;
+        }
+
+        private void ButtonLeft_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.PreviousImage();
+        }
+
+        private void ButtonRight_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.NextImage();
         }
     }
 }
