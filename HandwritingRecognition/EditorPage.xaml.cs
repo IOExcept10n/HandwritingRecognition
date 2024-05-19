@@ -45,7 +45,7 @@ namespace HandwritingRecognition
 
         private void ShowHelp_Click(object sender, RoutedEventArgs e)
         {
-            // TODO.
+            Process.Start(@"https://github.com/IOExcept10n/HandwritingRecognition/blob/main/Инструкция.md");
         }
 
         private void SaveFileAs_Click(object sender, RoutedEventArgs e)
