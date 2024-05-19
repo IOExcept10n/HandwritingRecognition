@@ -15,18 +15,18 @@
             <!-- Other app resources here -->
             <ViewModel:EditorViewModel x:Key="Editor" x:Name="EditorInstance" />
             <Style x:Key="FontStyle" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="./Resources/#Days"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontFamily" Value="./Resources/#Days" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="White" />
             </Style>
             <Style x:Key="MainMenuButtonStyle" TargetType="Button">
                 <Style.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="12"/>
+                        <Setter Property="CornerRadius" Value="12" />
                     </Style>
                 </Style.Resources>
             </Style>
-            <BitmapImage x:Key="FallbackImage" UriSource="./Resources/image.png"/>
+            <BitmapImage x:Key="FallbackImage" UriSource="./Resources/image.png" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
