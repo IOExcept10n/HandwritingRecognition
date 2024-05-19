@@ -1,4 +1,5 @@
 ﻿using HandwritingRecognition.ViewModel;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,8 +29,19 @@ namespace HandwritingRecognition
         public MainWindow()
         {
             InitializeComponent();
-            editor = EditorViewModel.Instance;
+            editor = EditorViewModel.Instance = (EditorViewModel)DataContext;
             editor.InitializePipeline();
+            SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            OpenCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
+            SaveAsCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift));
+            LoadImagesCommand.InputGestures.Add(new KeyGesture(Key.L, ModifierKeys.Control));
+            NewFileCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            e.Cancel = !editor.SaveIfUnsaved();
         }
     }
 }

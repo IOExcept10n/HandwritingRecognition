@@ -1,25 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows;
 
 namespace HandwritingRecognition.Controls
 {
+    /// <summary>
+    /// Represents a content control with support of move and zoom contents.
+    /// </summary>
     public class ZoomBorder : Border
     {
         private UIElement? child = null;
+        private Size initialSize;
         private Point origin;
+        private double scale = 1;
         private Point start;
 
-        private Size initialSize;
-        private double scale = 1;
+        /// <summary>
+        /// Gets or sets the child element to scale and move.
+        /// </summary>
+        public override UIElement Child
+        {
+            get => base.Child;
+            set
+            {
+                if (value != null && value != Child)
+                    Initialize(value);
+                base.Child = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum content scaling factor.
+        /// </summary>
         public double MaxScale { get; set; } = 3;
+
+        /// <summary>
+        /// Gets or sets the minimum content scaling factor.
+        /// </summary>
         public double MinScale { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets the current scaling factor.
+        /// </summary>
         public double Scale
         {
             get => scale;
@@ -32,29 +55,10 @@ namespace HandwritingRecognition.Controls
             }
         }
 
-
-        private TranslateTransform GetTranslateTransform(UIElement element)
-        {
-            return (TranslateTransform)((TransformGroup)element.RenderTransform)
-              .Children.First(tr => tr is TranslateTransform);
-        }
-
-        private ScaleTransform GetScaleTransform(UIElement element)
-        {
-            return (ScaleTransform)((TransformGroup)element.RenderTransform)
-              .Children.First(tr => tr is ScaleTransform);
-        }
-
-        public override UIElement Child
-        {
-            get => base.Child;
-            set
-            {
-                if (value != null && value != Child)
-                    Initialize(value);
-                base.Child = value;
-            }
-        }
+        /// <summary>
+        /// Initializes the component properties according to content change.
+        /// </summary>
+        /// <param name="element">New content element to bind properties to.</param>
         public void Initialize(UIElement element)
         {
             child = element;
@@ -77,6 +81,9 @@ namespace HandwritingRecognition.Controls
             }
         }
 
+        /// <summary>
+        /// Resets the scale and move state.
+        /// </summary>
         public void Reset()
         {
             if (child != null)
@@ -91,11 +98,24 @@ namespace HandwritingRecognition.Controls
             }
         }
 
+        private ScaleTransform GetScaleTransform(UIElement element)
+        {
+            return (ScaleTransform)((TransformGroup)element.RenderTransform)
+              .Children.First(tr => tr is ScaleTransform);
+        }
+
+        private TranslateTransform GetTranslateTransform(UIElement element)
+        {
+            return (TranslateTransform)((TransformGroup)element.RenderTransform)
+              .Children.First(tr => tr is TranslateTransform);
+        }
+
+#pragma warning disable
         #region Child Events
 
         private void child_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (child != null && e.Delta>0)
+            if (child != null && e.Delta > 0)
             {
                 var st = GetScaleTransform(child);
                 var tt = GetTranslateTransform(child);

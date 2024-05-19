@@ -11,107 +11,79 @@ using System.Windows;
 
 namespace HandwritingRecognition.Data
 {
+    /// <summary>
+    /// Represents the information about the employment history record.
+    /// </summary>
     public class EmploymentHistory
     {
+        /// <summary>
+        /// Gets the definition of this record.
+        /// </summary>
         public EmploymentHistoryDefinition HistoryDefinition { get; init; } = new();
 
+        /// <summary>
+        /// Gets the information about employee.
+        /// </summary>
         public EmployeeInfo Info { get; init; } = new();
 
+        /// <summary>
+        /// Gets the list of jobs in which the employee has participated.
+        /// </summary>
         public ObservableCollection<EmploymentHistoryRecord> Jobs { get; init; } = [];
 
+        /// <summary>
+        /// Gets the list of rewards given to employee.
+        /// </summary>
         public ObservableCollection<RewardHistoryRecord> Rewards { get; init; } = [];
 
-        public class EmploymentHistoryDefinition : INotifyPropertyChanged
-        {
-            private string? series;
-            private string? number;
-            private DateOnly? withdrawDate;
-            private string? stampInfo;
-
-            public event PropertyChangedEventHandler? PropertyChanged;
-
-            public string? Series
-            {
-                get => series;
-                set
-                {
-                    series = value;
-                    OnPropertyChanged();
-                }
-            }
-
-            public string? Number
-            {
-                get => number;
-                set
-                {
-                    number = value;
-                    OnPropertyChanged();
-                }
-            }
-
-            public DateOnly? WithdrawDate
-            {
-                get => withdrawDate;
-                set
-                {
-                    withdrawDate = value;
-                    OnPropertyChanged();
-                }
-            }
-
-            public string? StampInfo
-            {
-                get => stampInfo;
-                set
-                {
-                    stampInfo = value;
-                    OnPropertyChanged();
-                }
-            }
-
-            private void OnPropertyChanged([CallerMemberName] string? name = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
+        /// <summary>
+        /// Represents the information about the employee.
+        /// </summary>
         public class EmployeeInfo : INotifyPropertyChanged
         {
-            private string surname;
-            private string? overrideSurname;
-            private string name;
-            private string? overrideName;
-            private string? partonymic;
-            private string? overridePatronymic;
             private DateOnly? birthDate;
-            private PassportInfo? overrideReason;
             private string? education;
+            private string name = string.Empty;
+            private string? overrideName;
+            private string? overridePatronymic;
+            private PassportInfo? overrideReason;
+            private string? overrideSurname;
+            private string? patronymic;
             private string? profession;
+            private string surname = string.Empty;
 
+            /// <inheritdoc/>
             public event PropertyChangedEventHandler? PropertyChanged;
 
-            [Required]
-            public string Surname
+            /// <summary>
+            /// Gets or sets the birth date of the employee.
+            /// </summary>
+            public DateOnly? BirthDate
             {
-                get => surname;
+                get => birthDate;
                 set
                 {
-                    surname = value;
+                    birthDate = value;
                     OnPropertyChanged();
                 }
             }
 
-            public string? OverrideSurname
+            /// <summary>
+            /// Gets or sets the education info.
+            /// </summary>
+            public string? Education
             {
-                get => overrideSurname;
+                get => education;
                 set
                 {
-                    overrideSurname = value;
+                    education = value;
                     OnPropertyChanged();
                 }
             }
 
+            /// <summary>
+            /// Gets or sets the employee name.
+            /// </summary>
             [Required]
             public string Name
             {
@@ -123,6 +95,9 @@ namespace HandwritingRecognition.Data
                 }
             }
 
+            /// <summary>
+            /// Gets or sets the employee name after rename (if it has been).
+            /// </summary>
             public string? OverrideName
             {
                 get => overrideName;
@@ -133,16 +108,9 @@ namespace HandwritingRecognition.Data
                 }
             }
 
-            public string? Partonymic
-            {
-                get => partonymic;
-                set
-                {
-                    partonymic = value;
-                    OnPropertyChanged();
-                }
-            }
-
+            /// <summary>
+            /// Gets or sets the employee patronymic after rename (if it has been).
+            /// </summary>
             public string? OverridePatronymic
             {
                 get => overridePatronymic;
@@ -153,16 +121,9 @@ namespace HandwritingRecognition.Data
                 }
             }
 
-            public DateOnly? BirthDate
-            {
-                get => birthDate;
-                set
-                {
-                    birthDate = value;
-                    OnPropertyChanged();
-                }
-            }
-
+            /// <summary>
+            /// Gets or sets the reason of the rename (full passport info).
+            /// </summary>
             public PassportInfo? OverrideReason
             {
                 get => overrideReason;
@@ -173,22 +134,126 @@ namespace HandwritingRecognition.Data
                 }
             }
 
-            public string? Education
+            /// <summary>
+            /// Gets or sets the employee surname after rename (if it has been).
+            /// </summary>
+            public string? OverrideSurname
             {
-                get => education;
+                get => overrideSurname;
                 set
                 {
-                    education = value;
+                    overrideSurname = value;
                     OnPropertyChanged();
                 }
             }
 
+            /// <summary>
+            /// Gets or sets the employee patronymic.
+            /// </summary>
+            public string? Patronymic
+            {
+                get => patronymic;
+                set
+                {
+                    patronymic = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the profession info.
+            /// </summary>
             public string? Profession
             {
                 get => profession;
                 set
                 {
                     profession = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the employee surname.
+            /// </summary>
+            [Required]
+            public string Surname
+            {
+                get => surname;
+                set
+                {
+                    surname = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private void OnPropertyChanged([CallerMemberName] string? name = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        /// <summary>
+        /// Represents the definition of the employment history record.
+        /// </summary>
+        public class EmploymentHistoryDefinition : INotifyPropertyChanged
+        {
+            private string? number;
+            private string? series;
+            private string? stampInfo;
+            private DateOnly? withdrawDate;
+
+            /// <inheritdoc/>
+            public event PropertyChangedEventHandler? PropertyChanged;
+
+            /// <summary>
+            /// Gets or sets the number of the history record.
+            /// </summary>
+            public string? Number
+            {
+                get => number;
+                set
+                {
+                    number = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the series of the history record.
+            /// </summary>
+            public string? Series
+            {
+                get => series;
+                set
+                {
+                    series = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the info about the stamp on the record.
+            /// </summary>
+            public string? StampInfo
+            {
+                get => stampInfo;
+                set
+                {
+                    stampInfo = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the date when the record was made.
+            /// </summary>
+            public DateOnly? WithdrawDate
+            {
+                get => withdrawDate;
+                set
+                {
+                    withdrawDate = value;
                     OnPropertyChanged();
                 }
             }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace HandwritingRecognition.Data
 {
+    /// <summary>
+    /// Gets or sets the information about the employee rewards.
+    /// </summary>
     public class RewardHistoryRecord : INotifyPropertyChanged
     {
         private DateOnly? date;
@@ -15,8 +18,12 @@ namespace HandwritingRecognition.Data
         private string? details;
         private string? orderInfo;
 
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        /// <summary>
+        /// Gets or sets the date or the reward giving.
+        /// </summary>
         public DateOnly? Date
         {
             get => date;
@@ -27,6 +34,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the information about the stamp.
+        /// </summary>
         public string? StampInfo
         {
             get => stampInfo;
@@ -37,6 +47,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the details about the reward.
+        /// </summary>
         public string? Details
         {
             get => details;
@@ -47,6 +60,9 @@ namespace HandwritingRecognition.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the info about reward order.
+        /// </summary>
         public string? OrderInfo
         {
             get => orderInfo;
